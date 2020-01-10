@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix = "f" uri = "http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 
 <html lang="el">
@@ -61,14 +61,27 @@
 					<p>Για οποιαδίποτε απορία ή πρόβλημα επικοινωνήστε με τη γραμματεία του τμήματός σας.</p>
 					<p>Πατήστε "Επιβεβαίωση Αιτήματος" για τελική αποστολή του αιτήματος σας στον υπεύθυνο για την εργασία καθηγητή.</p>
 				</div>
-				<form action="redirect" method="GET">
+				<f:form method = "GET" action = "/EssSubSys/redirect">
 					<div class="card-footer">
 						<input type="submit" value="Τελική Υποβολή" class="btn btn-primary float-right submit_btn">
+						
 						<button type="button" name="back" onclick="history.back()" class="btn btn-primary float-left submit_btn">Επανεξέταση Εργασίας</button>
 					</div>
-				</form>
+				</f:form>
 			</div>
 		</div>
 	</div>
+	<!-- FOOTER -->
+	<footer class="fixed-bottom navbar navbar-light"
+		style="background-color: #e3f2fd;">
+		<div class="d-flex justify-content-left links">
+			<a href="#">Αρχική</a> //
+			<a href="#">Επικοινωνία</a> //
+			<a href="#">Σχετικοί Σύνδεσμοι</a> // 
+			<a href="#">Όροι Χρήσης</a> // 
+			<a href="#">Οδηγίες Χρήσης</a>
+		</div>
+		Σύστημα Δήλωσης Εργασιών © Copyright 2020 Χαροκόπειο Πανεπιστήμιο
+	</footer>
 </body>
 </html>

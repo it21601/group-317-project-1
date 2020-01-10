@@ -73,5 +73,17 @@
 			</div>
 		</div>
 	</div>
+	<!-- FOOTER -->
+	<footer class="fixed-bottom navbar navbar-light"
+		style="background-color: #e3f2fd;">
+		<div class="d-flex justify-content-left links">
+			<a href="#">Αρχική</a> //
+			<a href="#">Επικοινωνία</a> //
+			<a href="#">Σχετικοί Σύνδεσμοι</a> // 
+			<a href="#">Όροι Χρήσης</a> // 
+			<a href="#">Οδηγίες Χρήσης</a>
+		</div>
+		Σύστημα Δήλωσης Εργασιών © Copyright 2020 Χαροκόπειο Πανεπιστήμιο
+	</footer>
 </body>
 </html>

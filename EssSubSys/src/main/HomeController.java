@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import database.*;
@@ -22,37 +23,45 @@ public class HomeController {
 
 	@RequestMapping("/student")
 	public String showStudentMenu(HttpServletRequest request, Model model) {
-		String nextView = "login";
+		String nextView = "student_menu";
 
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String origin_check = request.getParameter("origin");
 
-		DbHandler dbh = new DbHandler();
-		List<Student> foundStudents = dbh.verifyUser("Student", username, password);
-		List<Essay> foundEssays = dbh.viewEssays(foundStudents.get(0).type);
+		if (origin_check != null) {
+			if (origin_check.equals("login")) {
+				String username = request.getParameter("username");
+				String password = request.getParameter("password");
 
-		boolean c1 = foundStudents.isEmpty();
+				DbHandler dbh = new DbHandler();
+				List<Student> foundStudents = dbh.verifyUser("Student", username, password);
+				
+				boolean c1 = foundStudents.isEmpty();
 
-		if (c1 == true) {
-			System.out.println("Student doesn't exist.");
-		} else {
-			nextView = "student_menu";
-			request.getSession().setAttribute("userame", username);
-			request.getSession().setAttribute("password", password);
-			request.getSession().setAttribute("first_name", foundStudents.get(0).fName);
+				if (c1 == true) {
+					System.out.println("Student doesn't exist.");
+					nextView = "login";
+				} else {
+					List<Essay> foundEssays = dbh.viewEssays(foundStudents.get(0).type);
 
-			boolean c2 = foundEssays.isEmpty();
+					request.getSession().setAttribute("userame", username);
+					request.getSession().setAttribute("password", password);
+					request.getSession().setAttribute("first_name", foundStudents.get(0).fName);
+					request.getSession().setAttribute("essays", foundEssays);
 
-			if (c2 == true) {
-				System.out.println("No essays available.");
-			} else {
-				model.addAttribute("essays", foundEssays);
+					boolean c2 = foundEssays.isEmpty();
+
+					if (c2 == true) {
+						System.out.println("No essays available.");
+					} else {
+						model.addAttribute("essays", foundEssays);
+					}
+				}
 			}
 		}
 
 		return nextView;
 	}
-	
+
 	@RequestMapping({ "/student/essay", "/essay" })
 	public String showEssay(HttpServletRequest request, Model model) {
 		String title = request.getParameter("title");
@@ -74,5 +83,9 @@ public class HomeController {
 		return "essay_submission";
 	}
 
-
+	@RequestMapping(value = "/redirect", method = RequestMethod.GET)
+	public String SubmitAndRedirect() {
+		
+		return "redirect:student";
+	}
 }
