@@ -31,7 +31,7 @@
 		<org.springsecurity.version>5.2.1.RELEASE</org.springsecurity.version>
 		<org.hibernate.version>5.3.7.Final</org.hibernate.version>
 		<hibernate.version>5.4.10.Final</hibernate.version>
-		<com.mysql>8.0.15</com.mysql>
+		<com.mysql>8.0.28</com.mysql>
 	</properties>
 	<dependencies>
 		<!-- SPRING -->
